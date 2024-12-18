@@ -13,7 +13,7 @@ const props = withDefaults(
   }>(),
   {
     level: 0,
-    offset: 1.25,
+    offset: 1.50,
   },
 );
 
@@ -27,7 +27,7 @@ const SlotComponent = computed(() => slots?.default);
 
 <template>
   <div
-    class="flex items-center gap-1"
+    class="flex items-center align-center"
     :style="offsetStyle"
     v-bind="$attrs"
   >

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vscode/codicons": "^0.0.36",
     "lodash-es": "^4.17.21",
     "vue": "^3.5.13"
   },

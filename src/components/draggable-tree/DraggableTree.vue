@@ -1,15 +1,18 @@
 <script lang="ts" setup>
 import { TreeNode } from "./tree-node";
 import type { NodeType } from ".";
-import diffAddedIcon from "./diff-added.svg";
-import diffRemovedIcon from "./diff-removed.svg";
-import circleFilledIcon from "./circle-filled.svg";
+import { CodeIcon } from "./code-icon";
 
-defineProps<{ tree: NodeType }>();
+type NodeId = NodeType["id"];
+
+defineProps<{
+  tree: NodeType;
+  selectedId?: NodeId;
+}>();
 
 const emits = defineEmits<{
-  expand: [id: NodeType["id"]];
-  collapse: [id: NodeType["id"]];
+  expand: [id: NodeId];
+  collapse: [id: NodeId];
 }>();
 </script>
 
@@ -25,37 +28,27 @@ const emits = defineEmits<{
             v-if="node.collapse"
             @click="emits('expand', node.id)"
           >
-            <img
-              class="w-4 h-4"
-              :src="diffAddedIcon"
-            />
+            <CodeIcon icon="diff-added"></CodeIcon>
           </button>
 
           <!-- 收起按钮 -->
-          <button
-            class="p-1 rounded-sm hover:bg-slate-200"
-            @click="emits('collapse', node.id)"
-            v-else
-          >
-            <img
-              class="w-4 h-4"
-              :src="diffRemovedIcon"
-            />
+          <button class="p-1 rounded-sm hover:bg-slate-200">
+            <CodeIcon icon="diff-removed"></CodeIcon>
           </button>
         </template>
 
         <!-- 无 children 时展示指示按钮 -->
         <button
           v-else
-          class="p-1 rounded-sm hover:bg-slate-200"
-        >
-          <img
-            class="w-4 h-4"
-            :src="circleFilledIcon"
-          />
-        </button>
+          class="w-5 h-5 pointer-events-none"
+        ></button>
 
-        <span> {{ node.name }} </span>
+        <button
+          class="rounded-sm hover:bg-slate-200 px-1 py-0.5"
+          :class="{ 'bg-black text-white': selectedId === node.id }"
+        >
+          {{ node.name }}
+        </button>
       </template>
     </TreeNode>
   </div>

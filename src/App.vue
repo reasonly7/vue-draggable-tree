@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DraggableTree, useDraggableTree } from "./components/draggable-tree";
+import { DraggableTree, useDraggableTree } from "./components";
 
 const tree = useDraggableTree();
 </script>
