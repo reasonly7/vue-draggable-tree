@@ -23,7 +23,7 @@ const emits = defineEmits<{
         <template v-if="hasChildren">
           <!-- 展开按钮 -->
           <button
-            class="p-1 rounded-sm hover:bg-slate-200"
+            class="p-1 rounded-sm"
             v-if="node.collapse"
             @click="emits('expand', node.id)"
           >
@@ -33,7 +33,7 @@ const emits = defineEmits<{
           <!-- 收起按钮 -->
           <button
             v-else
-            class="p-1 rounded-sm hover:bg-slate-200"
+            class="p-1 rounded-sm"
             @click="emits('collapse', node.id)"
           >
             <CodeIcon icon="diff-removed"></CodeIcon>
@@ -52,7 +52,7 @@ const emits = defineEmits<{
         </span>
 
         <button
-          class="rounded-sm ml-1 hover:bg-slate-200 px-1"
+          class="rounded-sm hover:bg-slate-200 px-1.5"
           :class="{ '!bg-black !text-white': selectedId === node.id }"
           @click="emits('select', node.id)"
         >
