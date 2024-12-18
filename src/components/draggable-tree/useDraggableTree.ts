@@ -1,9 +1,14 @@
-import { reactive, shallowRef } from "vue";
-import { NodeType } from "./types";
+import { reactive, ref, shallowRef } from "vue";
+import type { NodeType, NodeId } from "./types";
 import { cloneDeep } from "lodash-es";
 
 export const useDraggableTree = (treeData?: NodeType) => {
   const data = shallowRef(cloneDeep(treeData) || getDefaultTreeData());
+  const selectedId = ref<NodeId>();
+
+  const select = (id?: NodeId) => {
+    selectedId.value = id;
+  };
 
   const updateTree = () => {
     data.value = cloneDeep(data.value);
@@ -33,6 +38,8 @@ export const useDraggableTree = (treeData?: NodeType) => {
     data,
     expand,
     collapse,
+    select,
+    selectedId,
   });
 };
 

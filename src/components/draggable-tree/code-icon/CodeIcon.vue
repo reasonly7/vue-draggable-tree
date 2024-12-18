@@ -10,7 +10,10 @@ const href = computed(() => `${codiconSvg}#${props.icon}`);
 </script>
 
 <template>
-  <svg class="w-4 h-4">
+  <svg
+    width="1em"
+    height="1em"
+  >
     <use :xlink:href="href"></use>
   </svg>
 </template>

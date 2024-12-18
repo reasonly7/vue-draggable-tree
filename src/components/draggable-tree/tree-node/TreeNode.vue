@@ -13,7 +13,7 @@ const props = withDefaults(
   }>(),
   {
     level: 0,
-    offset: 1.50,
+    offset: 1.25,
   },
 );
 

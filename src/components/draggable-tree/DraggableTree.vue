@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { TreeNode } from "./tree-node";
-import type { NodeType } from ".";
 import { CodeIcon } from "./code-icon";
-
-type NodeId = NodeType["id"];
+import type { NodeType, NodeId } from ".";
 
 defineProps<{
   tree: NodeType;
@@ -13,6 +11,7 @@ defineProps<{
 const emits = defineEmits<{
   expand: [id: NodeId];
   collapse: [id: NodeId];
+  select: [id: NodeId];
 }>();
 </script>
 
@@ -32,20 +31,30 @@ const emits = defineEmits<{
           </button>
 
           <!-- 收起按钮 -->
-          <button class="p-1 rounded-sm hover:bg-slate-200">
+          <button
+            v-else
+            class="p-1 rounded-sm hover:bg-slate-200"
+            @click="emits('collapse', node.id)"
+          >
             <CodeIcon icon="diff-removed"></CodeIcon>
           </button>
         </template>
 
         <!-- 无 children 时展示指示按钮 -->
-        <button
+        <span
           v-else
-          class="w-5 h-5 pointer-events-none"
-        ></button>
+          class="p-1"
+        >
+          <CodeIcon
+            icon="file"
+            class="text-slate-500"
+          ></CodeIcon>
+        </span>
 
         <button
-          class="rounded-sm hover:bg-slate-200 px-1 py-0.5"
-          :class="{ 'bg-black text-white': selectedId === node.id }"
+          class="rounded-sm ml-1 hover:bg-slate-200 px-1"
+          :class="{ '!bg-black !text-white': selectedId === node.id }"
+          @click="emits('select', node.id)"
         >
           {{ node.name }}
         </button>
