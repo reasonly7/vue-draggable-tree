@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { TreeNode } from "./tree-node";
-import { CodeIcon } from "./code-icon";
+import { CodeIcon } from "@/components";
 import type { NodeType, NodeId } from ".";
 
 defineProps<{

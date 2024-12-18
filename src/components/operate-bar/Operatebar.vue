@@ -1,5 +1,11 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { OperateBtn } from "./operate-btn";
+</script>
 
 <template>
-  <div class="operate-bar">123</div>
+  <ul class="">
+    <li>
+      <OperateBtn></OperateBtn>
+    </li>
+  </ul>
 </template>
