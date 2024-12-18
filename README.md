@@ -4,6 +4,8 @@
 
 See [DraggableTree.vue](./src/components/draggable-tree/DraggableTree.vue)
 
+![](./preview.png)
+
 ## Todo
 
 add draggable
