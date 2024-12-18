@@ -10,6 +10,23 @@ const treeData: NodeType = {
       id: "1-1",
       name: "JavaScript",
       value: "js",
+      children: [
+        {
+          id: "1-1-1",
+          name: "DOM",
+          value: "dom",
+        },
+        {
+          id: "1-1-2",
+          name: "Browser Object Model",
+          value: "bom",
+        },
+        {
+          id: "1-1-3",
+          name: "ECMAScript",
+          value: "ecma",
+        },
+      ],
     },
     {
       id: "1-2",
