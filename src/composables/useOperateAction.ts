@@ -1,13 +1,26 @@
 import type { ActionItem } from "@/components";
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 
-export type Action = "add-nextsibling" | "add-previoussibling";
+export type Action =
+  | "add"
+  | "add-inner"
+  | "remove"
+  | "rename"
+  | "move-top"
+  | "move-down"
+  | "cut"
+  | "paste";
 
 export const useOperateAction = () => {
-  const actions: ActionItem<Action>[] = [
-    { key: "add-nextsibling", icon: "plus" },
-    { key: "add-previoussibling", icon: "plus" },
-  ];
+  const actions = computed(() => {
+    const list: ActionItem<Action>[] = [
+      { key: "add", icon: "add", disabled: true },
+      { key: "add-inner", icon: "diff-added", disabled: true },
+      { key: "remove", icon: "trash", disabled: true },
+      { key: "rename", icon: "edit", disabled: true },
+    ];
+    return list;
+  });
 
   const execute = (key: Action) => {
     console.log(key);
