@@ -1,4 +1,8 @@
-<script lang="ts" setup generic="T extends { children?: T[] }">
+<script
+  lang="ts"
+  setup
+  generic="T extends { children?: T[], collapse?: boolean }"
+>
 import { computed, useSlots } from "vue";
 
 const props = withDefaults(
@@ -31,21 +35,25 @@ const SlotComponent = computed(() => slots?.default);
       :node="node"
       :level="level"
       :offset="offset"
+      :hasChildren="!!node.children?.length"
     ></slot>
   </div>
 
-  <TreeNode
-    v-for="node in node.children"
-    :node="node"
-    :level="level + 1"
-    v-bind="$attrs"
-  >
-    <template #="{ node, level, offset }">
-      <SlotComponent
-        :node="node"
-        :level="level"
-        :offset="offset"
-      ></SlotComponent>
-    </template>
-  </TreeNode>
+  <template v-if="!node.collapse">
+    <TreeNode
+      v-for="node in node.children"
+      :node="node"
+      :level="level + 1"
+      v-bind="$attrs"
+    >
+      <template #="{ node, level, offset, hasChildren }">
+        <SlotComponent
+          :node="node"
+          :level="level"
+          :offset="offset"
+          :hasChildren="hasChildren"
+        ></SlotComponent>
+      </template>
+    </TreeNode>
+  </template>
 </template>
